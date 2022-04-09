@@ -1,11 +1,16 @@
 const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
+const { body, validationResult } = require('express-validator')
 
-router.post('/', (req, res) => {
-    const user = User(req.body);
-    user.save();
-    res.send("hello")
+router.post('/',  [
+    body('email').isEmail(),
+], (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    res.send(res.body)
 })
 
 module.exports = router;
