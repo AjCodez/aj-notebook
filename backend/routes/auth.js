@@ -3,7 +3,7 @@ const User = require('../models/User');
 const router = express.Router();
 const { body, validationResult } = require('express-validator')
 
-router.post('/', [
+router.post('/createuser', [
   body('email', 'enter a valid email').isEmail(),
   body('name', 'length should be greater than 3').isLength({ min: 3 }),
   body('password', 'length should be greater than 8').isLength({ min: 8 }),
@@ -13,7 +13,7 @@ router.post('/', [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  let user = User.findOne({email: req.body.email});
+  let user = await User.findOne({email: req.body.email});
   if(user){
     return res.status(400).json({error: 'user with this email already exists'})
   }
@@ -30,6 +30,7 @@ router.post('/', [
   //     message: err.message
   //   })
   // })
+  res.json({"lol":"lol"})
 })
 
 module.exports = router;
