@@ -4,7 +4,7 @@ const fetchUser = require('../middleware/fetchUser');
 const Notes = require('../models/Notes');
 const { body, validationResult } = require('express-validator');
 
-router.get('/fetchallnotes', fetchUser, async (req, res) => {
+router.post('/fetchallnotes', fetchUser, async (req, res) => {
     try {
         notes = await Notes.find({ user: req.user.id });
         res.json(notes)
@@ -14,7 +14,7 @@ router.get('/fetchallnotes', fetchUser, async (req, res) => {
     }
 })
 
-router.get('/addnote', fetchUser, [
+router.post('/addnote', fetchUser, [
     body('title', 'enter a valid title').exists(),
     body('description', 'enter something to note description').exists(),
 ], async (req, res) => {
@@ -24,7 +24,7 @@ router.get('/addnote', fetchUser, [
             return res.status(400).json({ errors: errors.array() });
         }
         const { title, description, tag } = req.body;
-        const note = new Note({
+        const note = new Notes({
             title, description, tag, user: req.user.id
         })
         const savedNote = await note.save()
