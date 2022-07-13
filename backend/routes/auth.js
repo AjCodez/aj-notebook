@@ -54,9 +54,24 @@ router.post('/loginuser', [
   try {
     let user = await User.findOne({email});
     if(!user){
-      return res.send(400).json({error: "Invalid credentials"});
+      return res.status(400).json({error: "Invalid credentials"});
     }
+    const passwordCompare = await bcrypt.compare(password, user.password);
+    if(!passwordCompare){
+      return res.status(400).json({error: "Invalid credentials"});
+    }
+    const data = {
+      user: {
+        id: user.id
+      }
+    }
+    const authToken = jwt.sign(data, 'shhhhh');
+
+    res.json({authToken})
+
   } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Some error happend")
   }
 })
 
