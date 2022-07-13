@@ -4,13 +4,13 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+const fetchUser = require('../middleware/fetchUser');
 
 router.post('/createuser', [
   body('email', 'enter a valid email').isEmail(),
   body('name', 'length should be greater than 3').isLength({ min: 3 }),
   body('password', 'length should be greater than 8').isLength({ min: 8 }),
 ], async (req, res) => {
-  console.log(req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -46,7 +46,6 @@ router.post('/loginuser', [
   body('email', 'enter a valid email').isEmail(),
   body('password', 'Enter a password').exists(),
 ], async (req, res) => {
-  console.log(req.body);
   const errors = validationResult(req);
   const {email,password} = req.body;
   if (!errors.isEmpty()) {
@@ -70,6 +69,17 @@ router.post('/loginuser', [
 
     res.json({authToken})
 
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Some error happend")
+  }
+})
+
+router.post('/getuser',fetchUser, async (req, res) => {
+  try {
+    const UserId = req.user.id;
+    const user = await User.findById(UserId).select("-password");
+    res.send(user);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Some error happend")
