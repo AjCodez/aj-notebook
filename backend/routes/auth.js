@@ -44,10 +44,11 @@ router.post('/createuser', [
 
 router.post('/loginuser', [
   body('email', 'enter a valid email').isEmail(),
-  body('name', 'length should be greater than 3').exists(),
+  body('password', 'Enter a password').exists(),
 ], async (req, res) => {
   console.log(req.body);
   const errors = validationResult(req);
+  const {email,password} = req.body;
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
