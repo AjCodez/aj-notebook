@@ -8,9 +8,12 @@ import {
 } from "react-router-dom";
 import { Home } from './components/home';
 import { About } from './components/about';
+import NoteState from './context/notes/NoteState';
 
 function App() {
   return (
+    <NoteState>
+
     <Router>
       <Navbar />
       <Switch>
@@ -22,6 +25,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </NoteState>
   );
 }
 
