@@ -3,6 +3,7 @@ const router = express.Router();
 const fetchUser = require('../middleware/fetchUser');
 const Notes = require('../models/Notes');
 const { body, validationResult } = require('express-validator');
+const { default: mongoose } = require('mongoose');
 
 router.post('/fetchallnotes', fetchUser, async (req, res) => {
     try {
@@ -29,6 +30,29 @@ router.post('/addnote', fetchUser, [
         })
         const savedNote = await note.save()
         res.json(savedNote)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error happend")
+    }
+})
+
+router.put('/updatenote/:id', fetchUser, async (req, res) => {
+    try {
+        const {title, description, tag} = req.body;
+        const newNote = {};
+        if(title){newNote.title= title};
+        if(description){newNote.description= description};
+        if(tag){newNote.tag= tag};
+
+        let note = await Notes.findById(req.params.id);
+        if(!note){return res.status(404).json({error: "Not Found"})}
+
+        if(note.user != req.user.id){
+            return res.status(401).json({error: "Not allowed"});
+        }
+
+        note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true})
+        res.json(note)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error happend")
