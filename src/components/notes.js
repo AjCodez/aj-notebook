@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import noteContext from '../context/notes/NoteContext'
+import NoteItem from './noteItem'
 
 export default function Notes() {
     const context = useContext(noteContext)
@@ -9,7 +10,7 @@ export default function Notes() {
 
             <h1>Your notes</h1>
             {note.map((note) => {
-                return note.title + ' ';
+                return <NoteItem note={note}/>
             })}
         </div>
     )
