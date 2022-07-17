@@ -1,8 +1,10 @@
 import React from 'react'
+import Notes from './notes'
+
 
 export const Home = () => {
   return (
-    <div className='container'>
+    <div>
       <div className='container'>
         <h1>Add a note</h1>
 
@@ -23,10 +25,7 @@ export const Home = () => {
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
-      <div className='container'>
-
-        <h1>Your notes</h1>
-      </div>
+      <Notes/>
     </div>
   )
 }
