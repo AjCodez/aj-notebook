@@ -58,11 +58,14 @@ const NoteState = (props) => {
         }
     ]
 
-    const addNote = () => {}
+    const addNote = (title, description, tag) => {
+        const notes = null;
+        setNote(initialNotes.push(notes))
+    }
 
-    const deleteNote = () => {}
+    const deleteNote = (id) => {}
 
-    const updateNote = () => {}
+    const updateNote = (id) => {}
 
 
     const [note, setNote] = useState(initialNotes)
