@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import Notes from './notes'
 
@@ -8,8 +8,15 @@ export const Home = () => {
   const context = useContext(noteContext)
   const { addNote } = context
 
-  const onChange = () => {}
-  const handleClick = () => {}
+  const [note, setNote] = useState({title : "", description: "", tag: ""})
+
+  const onChange = (e) => {
+    setNote({...note, [e.target.name]: e.target.value})
+  }
+  const handleClick = (e) => {
+    e.preventDefault();
+    addNote(note.con)
+  }
 
   return (
     <div>
@@ -22,8 +29,8 @@ export const Home = () => {
             <input type="text" className="form-control" name="title" id="title" aria-describedby="emailHelp" onChange={onChange} />
           </div>
           <div className="mb-3">
-            <label htmlFor="desc" className="form-label">Description</label>
-            <input type="text" className="form-control" id="desc" name="desc" onChange={onChange} />
+            <label htmlFor="description" className="form-label">Description</label>
+            <input type="text" className="form-control" id="description" name="description" onChange={onChange} />
           </div>
           <div className="mb-3 form-check">
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
