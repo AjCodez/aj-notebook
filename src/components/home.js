@@ -15,7 +15,7 @@ export const Home = () => {
   }
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(note.title, e.description)
+    addNote(note.title, note.description)
   }
 
   return (
