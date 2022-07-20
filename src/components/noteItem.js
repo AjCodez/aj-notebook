@@ -11,7 +11,7 @@ export default function NoteItem(props) {
                     <div className="d-flex align-items-center">
 
                         <h5 className="card-title">{props.note.title}</h5>
-                        <i className="far fa-trash-alt mx-2" onClick={()=>{deleteNote(props.note._id)}}></i>
+                        <i className="far fa-trash-alt mx-2" onClick={() => { deleteNote(props.note._id) }}></i>
                         <i className="fa-solid fa-pen-to-square mx-2"></i>
                     </div>
                     <p className="card-text">{props.note.description}</p>

@@ -74,14 +74,14 @@ const NoteState = (props) => {
     }
 
     const deleteNote = (id) => {
-        const filteredNote = note.filter((note)=>{return note._id!==id});
+        const filteredNote = note.filter((note) => { return note._id !== id });
         setNote(filteredNote);
     }
 
-    const updateNote = (id) => {}
+    const updateNote = (id) => { }
 
 
-    
+
 
 
     return (
