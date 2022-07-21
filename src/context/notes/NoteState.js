@@ -60,13 +60,13 @@ const NoteState = (props) => {
 
     const [note, setNote] = useState(initialNotes)
 
-    const addNote = (title, description) => {
+    const addNote = (title, description, tag) => {
         const notes = {
             "_id": "62d42a257926486f149e39a47",
             "user": "62cdf02b25fea4c69957eda3",
             "title": title,
             "description": description,
-            "tag": "personal",
+            "tag": tag,
             "date": "2022-07-17T15:27:19.249Z",
             "__v": 0
         };
@@ -78,7 +78,17 @@ const NoteState = (props) => {
         setNote(filteredNote);
     }
 
-    const updateNote = (id) => { }
+    const updateNote = (id,title, description,tag) => { 
+        for (let index = 0; index < note.length; index++) {
+            const element = note[index];
+            if(element._id===id){
+                element.title=title;
+                element.description=description;
+                element.tag=tag;
+            }
+            
+        }
+    }
 
 
 
