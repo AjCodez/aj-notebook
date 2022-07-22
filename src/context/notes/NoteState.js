@@ -1,12 +1,12 @@
 import { useState } from "react";
 import NoteContext from "./NoteContext";
 
-const NoteState = async (props) => {
+const NoteState =  (props) => {
 
     const initialNotes = []
 
     const getNote = async () => {
-        const response = await fetch("localhost:5000/api/notes/fetchallnotes", {
+        const response = await fetch("http://localhost:5000/api/notes/fetchallnotes", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
