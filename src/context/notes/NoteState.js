@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NoteContext from "./NoteContext";
 
-const NoteState =  (props) => {
+const NoteState = (props) => {
 
     const initialNotes = []
 
@@ -50,10 +50,6 @@ const NoteState =  (props) => {
 
         }
     }
-
-
-
-
 
     return (
         <NoteContext.Provider value={{ note, addNote, deleteNote, updateNote, getNote }}>
