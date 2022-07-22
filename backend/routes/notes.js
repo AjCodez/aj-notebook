@@ -5,7 +5,7 @@ const Notes = require('../models/Notes');
 const { body, validationResult } = require('express-validator');
 const { default: mongoose } = require('mongoose');
 
-router.post('/fetchallnotes', fetchUser, async (req, res) => {
+router.get('/fetchallnotes', fetchUser, async (req, res) => {
     try {
         notes = await Notes.find({ user: req.user.id });
         res.json(notes)
