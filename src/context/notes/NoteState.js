@@ -3,16 +3,18 @@ import NoteContext from "./NoteContext";
 
 const NoteState = async (props) => {
 
-    const getNote = () => {
+    const initialNotes = []
+
+    const getNote = async () => {
         const response = await fetch("localhost:5000/api/notes/fetchallnotes", {
-            method: 'POST',
-            mode: 'cors',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJjZGYwMmIyNWZlYTRjNjk5NTdlZGEzIn0sImlhdCI6MTY1NzczOTExN30.PD_iHlUk6u3LiWXNA-LMObjjwtWWHp69zrvPVQoAx4E'
-            }, body: JSON.stringify(data)
+            }
         });
-        const initialNotes = response.json();
+        const json = await response.json();
+        setNote(json);
     }
 
     const [note, setNote] = useState(initialNotes)
