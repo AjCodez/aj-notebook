@@ -30,15 +30,7 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title,description,tag})
         });
-        const response = await fetch("http://localhost:5000/api/notes/fetchallnotes", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJjZGYwMmIyNWZlYTRjNjk5NTdlZGEzIn0sImlhdCI6MTY1NzczOTExN30.PD_iHlUk6u3LiWXNA-LMObjjwtWWHp69zrvPVQoAx4E'
-            }
-        });
-        const json = await response.json();
-        setNote(json);
+        getNote();
     }
 
     const deleteNote = (id) => {
