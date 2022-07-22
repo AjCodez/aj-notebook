@@ -36,7 +36,7 @@ const NoteState = (props) => {
 
     const deleteNote = async (id) => {
         const deleteResponse = await fetch(`${url}/api/notes/deletenote/${id}`, {
-            method: 'DEL',
+            method: 'delete',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJjZGYwMmIyNWZlYTRjNjk5NTdlZGEzIn0sImlhdCI6MTY1NzczOTExN30.PD_iHlUk6u3LiWXNA-LMObjjwtWWHp69zrvPVQoAx4E'
