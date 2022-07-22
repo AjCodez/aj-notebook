@@ -7,7 +7,7 @@ const { default: mongoose } = require('mongoose');
 
 router.get('/fetchallnotes', fetchUser, async (req, res) => {
     try {
-        notes = await Notes.find({ user: req.user.id });
+        const notes = await Notes.find({ user: req.user.id });
         res.json(notes)
     } catch (error) {
         console.error(error.message);
