@@ -8,14 +8,14 @@ export const Home = () => {
   const context = useContext(noteContext)
   const { addNote } = context
 
-  const [note, setNote] = useState({title : "", description: ""})
+  const [note, setNote] = useState({title : "", description: "", tag:''})
 
   const onChange = (e) => {
     setNote({...note, [e.target.name]: e.target.value})
   }
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(note.title, note.description)
+    addNote(note.title, note.description, 'personal')
   }
 
   return (
