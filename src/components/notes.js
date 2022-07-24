@@ -1,20 +1,25 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import NoteItem from './noteItem'
 
 export default function Notes() {
-    const context = useContext(noteContext)
-    const { note, getNote } = context
+    const context = useContext(noteContext);
+    const { note, getNote } = context;
     useEffect(() => {
         getNote();
     }, [getNote])
 
+    const [notes, setNotes] = useState({title : "", description: "", tag:''})
+
     const ref = useRef(null)
 
-    const updateNote = (note) => {
-        ref.current.click()
+    const updateNote = (currentNote) => {
+        setNotes(currentNote);
+        ref.current.click();
     }
-
+    const onChange = (e) => {
+        setNotes({...notes, [e.target.name]:e.target.value})
+      }
     return (
         <>
             <button ref={ref} className='d-none' data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -29,7 +34,20 @@ export default function Notes() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            ...
+                            <form>
+                                <div className="mb-3">
+                                    <label htmlFor="title" className="form-label">Title</label>
+                                    <input type="text" className="form-control" name="title" id="title" onChange={onChange} value={notes.title} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="description" className="form-label">Description</label>
+                                    <input type="text" className="form-control" id="description" name="description" onChange={onChange} value={notes.description}/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="tag" className="form-label">Tag</label>
+                                    <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} value={notes.tag}/>
+                                </div>
+                            </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
