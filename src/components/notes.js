@@ -56,7 +56,7 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClick}>Update Changes</button>
+                            <button type="button" className="btn btn-primary" onClick={handleClick} data-bs-dismiss="modal">Update Changes</button>
                         </div>
                     </div>
                 </div>
