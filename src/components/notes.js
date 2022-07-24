@@ -4,7 +4,7 @@ import NoteItem from './noteItem'
 
 export default function Notes() {
     const context = useContext(noteContext);
-    const { note, getNote } = context;
+    const { note, getNote, editNote } = context;
     useEffect(() => {
         getNote();
     }, [getNote])
@@ -20,6 +20,11 @@ export default function Notes() {
     const onChange = (e) => {
         setNotes({...notes, [e.target.name]:e.target.value})
       }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        editNote(notes._id, notes.title, notes.description, notes.tag)
+    }
     return (
         <>
             <button ref={ref} className='d-none' data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -51,7 +56,7 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Update Changes</button>
+                            <button type="button" className="btn btn-primary" onClick={handleClick}>Update Changes</button>
                         </div>
                     </div>
                 </div>
