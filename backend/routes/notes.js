@@ -17,7 +17,6 @@ router.get('/fetchallnotes', fetchUser, async (req, res) => {
 
 router.post('/addnote', fetchUser, [
     body('title', 'enter a valid title').exists(),
-    body('description', 'enter something to note description').exists(),
 ], async (req, res) => {
     try {
         const errors = validationResult(req);

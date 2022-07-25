@@ -42,7 +42,7 @@ export default function Notes() {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" name="title" id="title" onChange={onChange} value={notes.title} />
+                                    <input type="text" className="form-control" name="title" id="title" onChange={onChange} value={notes.title}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
@@ -56,7 +56,7 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClick} data-bs-dismiss="modal">Update Changes</button>
+                            <button type="button" disabled={notes.title.length===0 && 'true'} className="btn btn-primary" onClick={handleClick} data-bs-dismiss="modal">Update Changes</button>
                         </div>
                     </div>
                 </div>

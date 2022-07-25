@@ -26,7 +26,7 @@ export const Home = () => {
         <form>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" name="title" id="title" aria-describedby="emailHelp" onChange={onChange} />
+            <input type="text" className="form-control" name="title" id="title" aria-describedby="emailHelp" onChange={onChange} minLength={3} required/>
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
@@ -36,7 +36,7 @@ export const Home = () => {
             <label htmlFor="tag" className="form-label">Tag</label>
             <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={handleClick}>Add the note</button>
+          <button disabled={note.title.length===0 && 'true'} type="submit" className="btn btn-primary" onClick={handleClick}>Add the note</button>
         </form>
       </div>
       <Notes />
