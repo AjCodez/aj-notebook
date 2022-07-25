@@ -65,7 +65,7 @@ export default function Notes() {
             <div className='row my-3'>
 
                 <h1>Your Notes</h1>
-                <div className="container bold fw-bold text-nowrap bg-light border">
+                <div className={`${note.length!==0 && 'd-none'} mx-3 my-3 bold fw-bold text-nowrap bg-light border`} style={{width: '12rem'}}>
                     {note.length===0 && 'No Note to display'}
                 </div>
                 {note.map((note) => {
