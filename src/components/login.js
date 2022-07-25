@@ -20,7 +20,8 @@ export const Login = () => {
         });
         const json = await response.json();
         if(json.success){
-            localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('token', json.authToken);
+            console.log(localStorage.getItem('token'));
             history.push('/');
         }
         else{
